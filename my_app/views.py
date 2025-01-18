@@ -9,10 +9,13 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            print("Form is valid")
             form.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             login(request, user)
             return redirect('home')
+        else:
+            print(form.errors)  # Display form errors in the console if any
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
