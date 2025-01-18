@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Photo Gallery</title>
+</head>
+<body class="flex flex-col min-h-screen">
+    <nav class="bg-gradient-to-r from-teal-500 via-green-400 to-teal-500 text-white p-4 shadow-lg">
+        <a href="{% url 'home' %}" class="mr-4 hover:underline">Home</a>
+        <a href="{% url 'profile' %}" class="mr-4 hover:underline">Profile</a>
+        <a href="{% url 'upload_photo' %}" class="mr-4 hover:underline">Upload Photo</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="mr-4 hover:underline">Logout</a>
+        {% else %}
+            <a href="{% url 'signup' %}" class="mr-4 hover:underline">Sign Up</a>
+            <a href="{% url 'login' %}" class="mr-4 hover:underline">Login</a>
+        {% endif %}
+    </nav>
+
+    <div class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer class="bg-gray-800 text-white py-4 mt-6">
+        <p class="text-center">&copy; 2025 Photo Gallery</p>
+    </footer>
+</body>
+</html>
