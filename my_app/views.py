@@ -15,7 +15,7 @@ def signup(request):
             login(request, user)
             return redirect('home')
         else:
-            print(form.errors)  # Display form errors in the console if any
+            print(form.errors)  
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
